@@ -1,0 +1,17 @@
+.content {
+    display: grid;
+    max-width: 1080px;
+    grid-template-areas:
+    "hd hd"
+    "nv ct";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    margin: 0 auto;
+}
+
+.content-wrapper {
+    grid-area: ct;
+}
+

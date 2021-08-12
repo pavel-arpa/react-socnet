@@ -1,0 +1,30 @@
+.info {
+    display: grid;
+    grid-template-areas:
+    "ProfileAv ProfileDesc";
+    grid-template-rows: 100px;
+    grid-template-columns: 100px 1fr;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.avatar img {
+    grid-area: ProfileAv;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.description {
+    grid-area: ProfileDesc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 24px;
+}
