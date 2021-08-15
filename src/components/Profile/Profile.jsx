@@ -13,7 +13,7 @@ function Profile(props) {
                 <img src="https://img2.goodfon.ru/wallpaper/nbig/7/7f/priroda-panorama-vershina.jpg" alt=""/>
             </div>
             <ProfileInfo/>
-            <PostsBlock posts={props.state.posts}/>
+            <PostsBlock posts={props.state.posts} addPost={props.addPost}/>
         </div>
     );
 }

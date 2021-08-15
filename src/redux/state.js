@@ -37,4 +37,15 @@ let state = {
     }
 }
 
+
+export let addPost = (arg) => {
+    let post = {
+        id: 2,
+        text: arg,
+        likesCount: 145
+    }
+    state.profilePage.posts.push(post)
+}
+
+
 export default state
