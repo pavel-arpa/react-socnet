@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import Nav from './components/Navbar/Nav';
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
+import {updateNewPostText} from "./redux/state";
 
 
 function App(props) {
@@ -18,8 +19,9 @@ function App(props) {
                 <div className={s['content-wrapper']}>
                     <Route path='/profile' render={() => {
                         return <Profile
-                            state={props.state.profilePage}
+                            state={props.state}
                             addPost={props.addPost}
+                            updateNewPostText={props.updateNewPostText}
                         />
                     }}/>
                     <Route path='/dialogs' render={() => {
