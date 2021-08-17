@@ -1,11 +1,6 @@
-// CONSTANTS
-
-const ADD_POST = 'ADD-POST'
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-
-// ===========
+import profilePageReducer from "./profile-page-reducer";
+import dialogsPageReducer from "./dialogs-page-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 let store = {
     _state: {
@@ -61,54 +56,16 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let post = {
-                id: 3,
-                text: this._state.profilePage.newPostText,
-                likesCount: 145
-            }
-            this._state.profilePage.posts.push(post)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this)
-        }
+        this._state.profilePage = profilePageReducer(action, this._state.profilePage)
+        this._state.dialogsPage = dialogsPageReducer(action, this._state.dialogsPage)
+        this._state.sidebar = sidebarReducer(action, this._state.sidebar)
 
-        else if (action.type === ADD_MESSAGE) {
-            let msg = {
-                id: 0,
-                text: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.messages[0].history.push(msg)
-            this._state.dialogsPage.newMessageText = ''
-            this._callSubscriber(this)
-        }
-
-        else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.text
-            this._callSubscriber(this)
-        }
-
-        else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageText = action.text
-            this._callSubscriber(this)
-        }
-
+        this._callSubscriber(this)
     }
 }
 
-export const addPost_AC = () => ({
-    type: ADD_POST
-})
-export const addMessage_AC = () => ({
-    type: ADD_MESSAGE
-})
-export const updateNewPostText_AC = (text) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    text: text
-})
-export const updateNewMessageText_AC = (text) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    text: text
-})
+
+
 
 window.store = store
 

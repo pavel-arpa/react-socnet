@@ -1,18 +1,23 @@
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import React from "react";
-import {addMessage_AC, updateNewMessageText_AC} from "../../redux/state";
+import {addMessage_AC, updateNewMessageText_AC} from "../../redux/dialogs-page-reducer";
+
 
 function Dialogs(props) {
-    let dialogsElements = props.state.dialogs.map(data => (<Dialog id={data.id} name={data.name}/>))
-    let messagesElements = props.state.messages[0].history.map(data => (<Message id={data.id} text={data.text}/>))
+    let dialogsElements = props.state.dialogs.map(data => (
+        <Dialog id={data.id} name={data.name}/>
+    ))
+    let messagesElements = props.state.messages[0].history.map(data => {
+        if (data.text !== '') {
+            return (<Message id={data.id} text={data.text}/>)
+        }
+    })
 
     let onSendMessage = () => {
         props.dispatch(addMessage_AC())
     }
-
     let onChangeNewMessageText = (e) => {
         let text = e.target.value;
         props.dispatch(updateNewMessageText_AC(text))

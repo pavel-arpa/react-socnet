@@ -12,6 +12,7 @@
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
+    display: block;
 }
 .message:last-of-type {
     margin-bottom: 10px;
@@ -20,6 +21,7 @@
     margin-top: auto;
 }
 .message span {
+    white-space: pre-wrap;
     font-size: 20px;
 }
 .message_me {
