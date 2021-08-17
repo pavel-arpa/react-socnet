@@ -1,6 +1,20 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
-import state, {addPost, updateNewPostText} from './redux/state'
-import {rerenderEntireTree} from "./render";
+import App from './App';
+import store from "./redux/state";
 
-rerenderEntireTree({state, addPost, updateNewPostText})
+export let rerenderEntireTree = (data) => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <App
+                state={data.getState()}
+                dispatch={data.dispatch.bind(data)}
+            />
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+}
+rerenderEntireTree(store)
+
+store.subscribe(rerenderEntireTree) // переприсваиваем

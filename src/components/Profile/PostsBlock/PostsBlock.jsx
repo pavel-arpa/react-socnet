@@ -1,7 +1,7 @@
 import s from './PostsBlock.module.css'
 import Post from "./Post/Post";
 import React from "react";
-import {updateNewPostText} from "../../../redux/state";
+import {addPost_AC, updateNewPostText_AC} from "../../../redux/state";
 
 function PostsBlock(props) {
     let postsElements = props.state.posts.map(data => (
@@ -11,19 +11,23 @@ function PostsBlock(props) {
     let refAddPost = React.createRef()
 
     let addPost = () => {
-        props.addPost()
+        props.dispatch(addPost_AC())
     }
 
     let changeNewPostText = () => {
         let text = refAddPost.current.value;
-        console.log(text)
-        props.updateNewPostText(text)
+        props.dispatch(updateNewPostText_AC(text))
     }
 
     return (
         <div className={s.wrapper}>
             <div className={s.addPost}>
-                <textarea ref={refAddPost} onChange={changeNewPostText} value={props.state.newPostText}/>
+                <input
+                    ref={refAddPost}
+                    onChange={changeNewPostText}
+                    value={props.state.newPostText}
+                    placeholder={'Enter the text here'}
+                />
                 <button onClick={addPost}>add post</button>
             </div>
         <div className={s.postsWrapper}>
